@@ -7,7 +7,9 @@
     "start": "node index.js",
     "start:watch": "nodemon",
     "prestart:prod": "tsc",
-    "start:prod": "node dist/main.js"
+    "start:prod": "node dist/main.js",
+    "assets:watch": "",
+    "assets:build": ""
   },
   "dependencies": {
     "@bashleigh/nest-config": "^0.0.6",
@@ -33,5 +35,5 @@
     "@types/node": "^9.3.0",
     "nodemon": "^1.14.1",
     "ts-node": "^4.1.0"
-  }
+  },
 }
