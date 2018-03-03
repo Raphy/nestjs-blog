@@ -44,4 +44,6 @@ export default class BlogService {
             pages: (params.skip + 1) / total,
         });
     }
+
+    async create
 }

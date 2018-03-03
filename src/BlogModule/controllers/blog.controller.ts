@@ -1,4 +1,10 @@
-import {Get, Controller, Res} from '@nestjs/common';
+import {
+    Get,
+    Controller,
+    Res,
+    Post,
+    Put,
+} from '@nestjs/common';
 
 @Controller()
 export default class BlogController {
