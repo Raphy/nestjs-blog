@@ -1,5 +1,6 @@
 import {
     Component,
+    NotFoundException,
 } from '@nestjs/common';
 
 import * as bcrypt from 'bcrypt';
@@ -47,24 +48,31 @@ export default class UserService {
             items: users,
             count: users.length,
             total: total,
-            pages: (params.skip + 1) / total,
+            pages: total % params.take,
         });
     }
 
-    async create(params: UserModel): Promise<User> {
+    async create(params: UserModel): User {
 
         const user = this.userRepository.create(params);
 
         user.password = await this.getHash(user.password);
 
-        const result = await this.userRepository.save(user);
+        try {
+            const result = await this.userRepository.save(user);
+        } catch(e) {
+            //TODO Catch mongo unique exception and throw a 422 for duplicated entity
+        }
+
         delete result.password;
 
         return result;
     }
 
-    async update(id: string, params: UserModel) : Promise<User> {
+    async update(id: string, params: UserModel) : User {
         let user = await this.findOneById(id);
+
+        if (!user) throw new NotFoundException('entity not found');
 
         user = {
             ...user,

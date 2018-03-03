@@ -6,7 +6,12 @@ import {
     CreateDateColumn,
     UpdateDateColumn,
     Index,
+    ManyToOne,
 } from "typeorm";
+
+import {
+    UserEntity as User,
+} from './../../UserModule/entities';
 
 @Entity()
 export default class Blog {
@@ -31,6 +36,9 @@ export default class Blog {
 
     @Column()
     status;
+
+    // @ManyToOne(type => User, user => user.blogs)
+    // user: User;
 
     @CreateDateColumn()
     created;

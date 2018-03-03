@@ -39,9 +39,7 @@ export default class UserModule {
         consumer
             .apply(passport.authenticate('jwt', { session: false }))
             .forRoutes(
-                { path: '/admin', method: RequestMethod.ALL },
-                { path: '/admin/user', method: RequestMethod.ALL },
-                { path: '/admin/blog', method: RequestMethod.ALL },
+                { path: '/admin/*', method: RequestMethod.ALL },
                 { path: '/auth/me', method: RequestMethod.ALL }
             );
     }

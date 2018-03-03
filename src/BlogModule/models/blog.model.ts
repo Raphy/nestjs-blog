@@ -3,6 +3,10 @@ import {
     Length,
 } from 'class-validator';
 
+import {
+    UserEntity as User,
+} from './../../UserModule/entities';
+
 export default class BlogModel {
 
     readonly id: string;
@@ -17,4 +21,6 @@ export default class BlogModel {
 
     @IsString()
     body;
+
+    user: User;
 }

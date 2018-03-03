@@ -1,5 +1,6 @@
 import {
     Component,
+    NotFoundException,
 } from '@nestjs/common';
 
 import {
@@ -41,9 +42,40 @@ export default class BlogService {
             items: blogs,
             count: blogs.length,
             total: total,
-            pages: (params.skip + 1) / total,
+            pages: total % params.take,
         });
     }
 
-    async create
+    async create(params : BlogModel) : Blog {
+        return await this.blogRepository.save(this.blogRepository.create(params));
+    }
+
+    async update(id : string, params : BlogModel) : Promise<Blog> {
+        let blog = await this.findOneById(id);
+
+        if (!blog) throw new NotFoundException();
+
+        blog = {
+            ...blog,
+            ...params,
+        };
+
+        await this.blogRepository.save(blog);
+
+        return blog;
+    }
+
+    async destroy(id : string) : Promise<void> {
+        return await this.blogRepository.deleteById(id);
+    }
+
+    async findOneById(id: string): Promise<Blog> {
+        return await this.blogRepository.findOneById(id);
+    }
+
+    async findBySlug(slug : string) : Promise<Blog> {
+        return await this.blogRepository.findOne({
+            slug: slug,
+        });
+    }
 }

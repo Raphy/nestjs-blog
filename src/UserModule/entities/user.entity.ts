@@ -3,8 +3,7 @@ import {
     ObjectID,
     ObjectIdColumn,
     Column,
-    JoinTable,
-    ManyToMany,
+    OneToMany,
     CreateDateColumn,
     UpdateDateColumn,
     Index,
@@ -35,9 +34,8 @@ export default class User {
     })
     password: string;
 
-    @ManyToMany(type => Blog)
-    @JoinTable()
-    roles: Blog[];
+    // @OneToMany(type => Blog, blog => blog.user)
+    // blogs: Blog[];
 
     @Column({
         type: 'boolean',

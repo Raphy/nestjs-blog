@@ -9,10 +9,16 @@ import * as services from './services';
 
 @Module({
     imports: [
-        TypeOrmModule.forFeature(entities),
+        TypeOrmModule.forFeature([
+            entities.Blog,
+        ]),
     ],
-    controllers: controllers,
-    components: services,
+    controllers: [
+        controllers.BlogController,
+    ],
+    components: [
+        services.BlogService,
+    ],
 })
 export default class BlogModule {
 }
