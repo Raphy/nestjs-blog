@@ -35,10 +35,7 @@ export default class UserController {
 
     @Get('')
     async index(@Req() request) : Promise<Paginate> {
-        return await this.userService.paginate({
-            skip: request.query.hasOwnProperty('skip') ? request.query.skip : 0,
-            take: request.query.hasOwnProperty('take') ? request.query.take : 10,
-        });
+        return await this.userService.paginate(request.query);
     }
 
     @Post('')

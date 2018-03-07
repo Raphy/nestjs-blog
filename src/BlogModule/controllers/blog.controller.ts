@@ -37,10 +37,7 @@ export default class BlogController {
 
     @Get('')
     async index(@Req() request) : Promise<Paginate> {
-        return await this.blogService.paginate({
-            skip: request.query.hasOwnProperty('skip') ? request.query.skip : 0,
-            take: request.query.hasOwnProperty('take') ? request.query.take : 10,
-        });
+        return await this.blogService.paginate(request.query);
     }
 
     @Post('')

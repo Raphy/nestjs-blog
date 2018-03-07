@@ -13,6 +13,10 @@ import {
 } from 'typeorm';
 
 import {
+    ConfigService,
+} from '@bashleigh/nest-config';
+
+import {
     Blog,
 } from '../entities';
 
@@ -25,13 +29,20 @@ import Paginate from './../../models/paginate.model';
 @Component()
 export default class BlogService {
     constructor(
+        private readonly config : ConfigService,
         @InjectRepository(Blog)
         private readonly blogRepository : Repository<Blog>
     ) {}
 
     async paginate(params : FindManyOptions<Blog> = {take: 10, skip: 0}) : Promise<Paginate> {
 
-        if (params.take > 100) params.take = 100;
+        if (!params.hasOwnProperty('take')) params.take = parseInt(this.config.get('PAGINATE_DEFAULT', 10));
+        if (!params.hasOwnProperty('skip')) params.skip = 0;
+        if (typeof(params.take) !== 'number') params.take = parseInt(params.take);
+
+        if (params.take > parseInt(this.config.get('PAGINATE_MAX', 100)))
+            params.take = parseInt(this.config.get('PAGINATE_MAX', 100));
+
         params.skip = params.skip * params.take;
 
         const blogs = await this.blogRepository.find(params);
@@ -42,7 +53,7 @@ export default class BlogService {
             items: blogs,
             count: blogs.length,
             total: total,
-            pages: total % params.take,
+            pages: Math.round(total / params.take),
         });
     }
 

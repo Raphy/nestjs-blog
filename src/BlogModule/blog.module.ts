@@ -3,6 +3,8 @@ import {
     TypeOrmModule,
 } from '@nestjs/typeorm';
 
+import ConfigModule from '@bashleigh/nest-config';
+
 import * as controllers from './controllers';
 import * as entities from './entities';
 import * as services from './services';
@@ -12,6 +14,7 @@ import * as services from './services';
         TypeOrmModule.forFeature([
             entities.Blog,
         ]),
+        ConfigModule,
     ],
     controllers: [
         controllers.BlogController,
