@@ -1,7 +1,7 @@
 import {
     Entity,
     ObjectID,
-    ObjectIdColumn,
+    PrimaryGeneratedColumn,
     Column,
     CreateDateColumn,
     UpdateDateColumn,
@@ -16,7 +16,7 @@ import {
 @Entity()
 export default class Blog {
 
-    @ObjectIdColumn()
+    @PrimaryGeneratedColumn()
     id: ObjectID;
 
     @Column()
@@ -31,14 +31,16 @@ export default class Blog {
     @Column()
     body: string;
 
-    @Column()
-    publish = null;
+    @Column("datetime", {
+        default: null,
+    })
+    publish;
+    //
+    // @Column()
+    // status;
 
-    @Column()
-    status;
-
-    // @ManyToOne(type => User, user => user.blogs)
-    // user: User;
+    @ManyToOne(type => User, user => user.blogs)
+    user: User;
 
     @CreateDateColumn()
     created;

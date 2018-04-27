@@ -1,7 +1,7 @@
 import {
     Entity,
     ObjectID,
-    ObjectIdColumn,
+    PrimaryGeneratedColumn,
     Column,
     OneToMany,
     CreateDateColumn,
@@ -14,7 +14,7 @@ import Blog from './../../BlogModule/entities/blog.entity';
 @Entity()
 export default class User {
 
-    @ObjectIdColumn()
+    @PrimaryGeneratedColumn()
     id: ObjectID;
 
     @Column()
@@ -34,11 +34,11 @@ export default class User {
     })
     password: string;
 
-    // @OneToMany(type => Blog, blog => blog.user)
-    // blogs: Blog[];
+    @OneToMany(type => Blog, blog => blog.user)
+    blogs: Blog[];
 
     @Column({
-        type: 'boolean',
+        default: 1,
     })
     active: boolean;
 
