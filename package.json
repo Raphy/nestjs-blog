@@ -9,7 +9,8 @@
     "prestart:prod": "tsc",
     "start:prod": "node dist/main.js",
     "assets:watch": "",
-    "assets:build": ""
+    "assets:build": "",
+    "schema:sync": "ts-node ./node_modules/.bin/typeorm schema:sync"
   },
   "dependencies": {
     "@bashleigh/nest-config": "^0.0.6",
@@ -22,7 +23,7 @@
     "bcrypt": "^1.0.3",
     "jade": "^1.11.0",
     "jsonwebtoken": "^8.2.0",
-    "mongodb": "^2.2.0",
+    "mysql": "^2.15.0",
     "passport": "^0.4.0",
     "passport-jwt": "^3.0.1",
     "redis": "^2.7.1",

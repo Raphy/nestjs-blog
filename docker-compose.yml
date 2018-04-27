@@ -2,15 +2,16 @@ version: "3"
 
 services:
     db:
-        image: mongo:latest
-        environment:
-          - MONGODB_USER="root"
-          - MONGODB_PASS="root"
-        volumes:
-          - ./.docker/mongo-data:/data/db
+        image: mysql:5.7
         ports:
-          - 27017:27017
-
+            - 3306:3306
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_DATABASE: nestblog
+            MYSQL_USER: root
+            MYSQL_PASSWORD: root
+        volumes:
+            - ./.docker/mysql-data:/var/lib/mysql
     node:
         build:
             context: '.docker/node'
@@ -22,7 +23,14 @@ services:
         ports:
           - 3000:3000
 
-    mongoAdmin:
-        image: mrvautin/adminmongo
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
         ports:
-          - 1234:1234
+            - 8088:80
+        environment:
+            PMA_HOST: db
+            PMA_USER: root
+            PMA_PASSWORD: root
+            PMA_ARBITRARY: 1
+        links:
+            - db
