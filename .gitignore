@@ -26,3 +26,7 @@ npm-debug.log
 
 ormconfig.json
 .docker/mysql-data
+
+public/build/
+
+dist

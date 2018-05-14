@@ -6,7 +6,7 @@ import ApplicationModule from './app.module';
 async function bootstrap() {
 	const app = await NestFactory.create(ApplicationModule);
 
-	app.use(express.static(path.join(__dirname, 'public')));
+	app.use(express.static(path.join(__dirname, '/../public')));
 	app.set('views', __dirname + '/views');
 	app.set('view engine', 'jade');
 
