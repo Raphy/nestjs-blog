@@ -100,7 +100,7 @@ export default class UserService {
     }
 
     async getHash(password: string|undefined): Promise<string> {
-        return bcrypt.hash(password, this.config.get('JWT_SALT_ROUNDS', this.saltRounds));
+        return bcrypt.hash(password, 10);
     }
 
     async compareHash(password: string|undefined, hash: string|undefined): Promise<boolean> {

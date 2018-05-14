@@ -1,25 +1,14 @@
 #!/usr/bin/env node
 
-var program = require('commander');
-var {version} = require('./package.json');
-var prompt = require('prompt');
-var nest = require('dist/main.js');
+require('ts-node/register');
 
-prompt.start();
+// TODO add start up text here
 
-program.version(version);
+console.log("     __          _       ___ _             ");
+console.log("  /\\ \\ \\___  ___| |_    / __\\ | ___   __ _ ");
+console.log(" /  \\/ / _ \\/ __| __|  /__\\/\/ |/ _ \\ \/ _` |");
+console.log("/ /\\  /  __/\\__ \\ |_  / \\/  \\ | (_) | (_| |");
+console.log("\\_\\ \\/ \\___||___/\\__| \\_____\/_|\\___/ \\__, |");
+console.log("                                     |___\/ ");
 
-program.command('user:create')
-    .description('Create a new user for the blog')
-    .alias('uc')
-    .action(function(env, options) {
-        var user = {};
-        prompt.get(['username', 'email', 'password'], function (err, result) {
-            if (err) { return onErr(err); }
-            user = result;
-          });
-
-        console.log('user', user);
-    });
-
-program.parse(process.argv);
+var bootstrap = require('./src/cli');

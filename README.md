@@ -37,3 +37,9 @@ Sync the entities to the database from within the container
 yarn schema:sync
 ```
 
+## Cli 
+I've built a basic cli for managing the project. So far there's only a user creation command.
+
+```bash
+./blog user:create
+```
