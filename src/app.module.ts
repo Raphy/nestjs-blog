@@ -9,15 +9,15 @@ import ConfigModule from '@bashleigh/nest-config';
 
 import AppController from './controllers/app.controller';
 
-import UserModule from './UserModule/user.module';
 import BlogModule from './BlogModule/blog.module';
+import UserModule from './UserModule/user.module';
 
 @Module({
   imports: [
     TypeOrmModule.forRoot(),
     ConfigModule,
-    UserModule,
     BlogModule,
+    UserModule,
   ],
   controllers: [
       AppController,
