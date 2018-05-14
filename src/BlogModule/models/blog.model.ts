@@ -6,10 +6,13 @@ import {
 import {
     UserEntity as User,
 } from './../../UserModule/entities';
+import {
+    ObjectID,
+} from "typeorm";
 
 export default class BlogModel {
 
-    readonly id: string;
+    readonly id: ObjectID;
 
     @IsString()
     @Length(2, 200)

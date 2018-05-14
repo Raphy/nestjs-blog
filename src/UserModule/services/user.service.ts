@@ -32,10 +32,10 @@ export default class UserService {
     constructor(
         private readonly config : ConfigService,
         @InjectRepository(User)
-        private readonly userRepository : Repository<User>
+        private readonly userRepository: Repository<User>
     ) {}
 
-    async paginate(params : FindManyOptions<User> = {take: 10, skip: 0}) : Paginate {
+    async paginate(params: FindManyOptions<User> = {take: 10, skip: 0}): Promise<Paginate> {
 
         if (!params.hasOwnProperty('take')) params.take = parseInt(this.config.get('PAGINATE_DEFAULT', 10));
         if (!params.hasOwnProperty('skip')) params.skip = 0;
@@ -58,7 +58,7 @@ export default class UserService {
         });
     }
 
-    async create(params: UserModel): User {
+    async create(params: UserModel): Promise<User> {
 
         const user = this.userRepository.create(params);
 
@@ -66,16 +66,17 @@ export default class UserService {
 
         try {
             const result = await this.userRepository.save(user);
+
+            delete result.password;
+
+            return result;
+
         } catch(e) {
             //TODO Catch mongo unique exception and throw a 422 for duplicated entity
         }
-
-        delete result.password;
-
-        return result;
     }
 
-    async update(id: string, params: UserModel) : User {
+    async update(id: string, params: UserModel) : Promise<User> {
         let user = await this.findOneById(id);
 
         if (!user) throw new NotFoundException('entity not found');

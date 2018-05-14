@@ -17,7 +17,7 @@ export default class Paginate {
     @IsNumber()
     pages : number;
 
-    constructor(params : object = {}) {
+    constructor(params: any = {}) {
         if (params.hasOwnProperty('items')) this.items = params.items;
         if (params.hasOwnProperty('total')) this.total = params.total;
         if (params.hasOwnProperty('count')) this.count = params.count;

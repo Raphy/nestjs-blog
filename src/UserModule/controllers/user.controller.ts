@@ -15,7 +15,6 @@ import Paginate from './../../models/paginate.model';
 
 import {
     ValidationPipe,
-    IDParamPipe,
 } from './../../pipes';
 
 import {
@@ -34,28 +33,28 @@ export default class UserController {
     ) {}
 
     @Get('')
-    async index(@Req() request) : Promise<Paginate> {
+    async index(@Req() request): Promise<Paginate> {
         return await this.userService.paginate(request.query);
     }
 
     @Post('')
-    async create(@Body(new ValidationPipe()) body : UserModel) : Promise<User> {
+    async create(@Body(new ValidationPipe()) body: UserModel): Promise<User> {
         return await this.userService.create(body);
     }
 
     @Put(':id')
-    async update(@Param('id', new IDParamPipe()) id : string, @Body(new ValidationPipe) body : UserModel)
+    async update(@Param('id') id: string, @Body(new ValidationPipe) body: UserModel)
     : Promise<User> {
         return await this.userService.update(id, body);
     }
 
     @Get(':id')
-    async show(@Param('id', new IDParamPipe()) id : string) : Promise<User> {
+    async show(@Param('id') id: string): Promise<User> {
         return await this.userService.findOneById(id);
     }
 
     @Delete(':id')
-    async destroy(@Param('id', new IDParamPipe()) id : string) : Promise<void> {
+    async destroy(@Param('id') id: string): Promise<void> {
         return await this.userService.destroy(id);
     }
 }

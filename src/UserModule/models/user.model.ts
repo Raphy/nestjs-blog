@@ -4,10 +4,13 @@ import {
     IsBoolean,
     MinLength,
 } from 'class-validator';
+import {
+    ObjectID,
+} from "typeorm";
 
 export default class UserModel {
 
-    readonly id: string;
+    readonly id: ObjectID;
 
     @Length(2, 20)
     readonly firstname: string;

@@ -32,7 +32,7 @@ export default class Blog {
     body: string;
 
     @Column("datetime", {
-        default: null,
+        'default': null,
     })
     publish;
     //

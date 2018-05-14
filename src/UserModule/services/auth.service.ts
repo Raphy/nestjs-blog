@@ -37,7 +37,7 @@ export default class AuthService {
         };
     }
 
-    async auth(auth : Auth) : object {
+    async auth(auth : Auth): Promise<object> {
         const user = await this.userService.findByEmail(auth.email);
 
         if (!user) throw new BadRequestException('Invalid credentials');

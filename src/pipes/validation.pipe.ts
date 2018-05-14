@@ -7,6 +7,7 @@ import {
 
 import {
     validate,
+    ValidationError,
 } from 'class-validator';
 
 import {
@@ -17,7 +18,7 @@ import {
 export default class ValidationPipe implements PipeTransform<any> {
 
     async transform(value, metadata: ArgumentMetadata) {
-        const { metatype } = metadata;
+        const {metatype} = metadata;
 
         if (!metatype || !this.toValidate(metatype)) {
             return value;
@@ -40,7 +41,7 @@ export default class ValidationPipe implements PipeTransform<any> {
         return !types.find((type) => metatype === type);
     }
 
-    private buildErrorResponse(errors : ValidationError[]) {
+    private buildErrorResponse(errors: ValidationError[]) {
         return errors.map((error) => ({[error.property]: error.constraints}));
     }
 }

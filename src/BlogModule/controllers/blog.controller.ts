@@ -13,7 +13,6 @@ import Paginate from './../../models/paginate.model';
 
 import {
     ValidationPipe,
-    IDParamPipe,
 } from './../../pipes';
 
 import {
@@ -49,18 +48,18 @@ export default class BlogController {
     }
 
     @Put(':id')
-    async update(@Param('id', new IDParamPipe()) id : string, @Req() request, @Body(new ValidationPipe()) body : BlogModel)
+    async update(@Param('id') id: string, @Req() request, @Body(new ValidationPipe()) body : BlogModel)
     : Promise<Blog> {
         return await this.blogService.update(id, body);
     }
 
     @Get(':id')
-    async show(@Param('id', new IDParamPipe()) id : string) : Promise<Blog> {
+    async show(@Param('id') id: string) : Promise<Blog> {
         return await this.blogService.findOneById(id);
     }
 
     @Delete(':id')
-    async destroy(@Param('id', new IDParamPipe()) id : string) : Promise<void> {
+    async destroy(@Param('id') id: string) : Promise<void> {
         return await this.blogService.destroy(id);
     }
 }

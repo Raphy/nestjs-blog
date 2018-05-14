@@ -57,7 +57,7 @@ export default class BlogService {
         });
     }
 
-    async create(params : BlogModel) : Blog {
+    async create(params : BlogModel) : Promise<Blog> {
         return await this.blogRepository.save(this.blogRepository.create(params));
     }
 
