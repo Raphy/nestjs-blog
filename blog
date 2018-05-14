@@ -1,0 +1,25 @@
+#!/usr/bin/env node
+
+var program = require('commander');
+var {version} = require('./package.json');
+var prompt = require('prompt');
+var nest = require('dist/main.js');
+
+prompt.start();
+
+program.version(version);
+
+program.command('user:create')
+    .description('Create a new user for the blog')
+    .alias('uc')
+    .action(function(env, options) {
+        var user = {};
+        prompt.get(['username', 'email', 'password'], function (err, result) {
+            if (err) { return onErr(err); }
+            user = result;
+          });
+
+        console.log('user', user);
+    });
+
+program.parse(process.argv);
