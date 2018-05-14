@@ -11,7 +11,7 @@ module.exports = {
 			'./sass/index.scss',
 		],
 		'index.js': [
-		  './ts/index.ts',
+		  './ts/index.tsx',
 		],
 	},
 	output: {
@@ -25,11 +25,15 @@ module.exports = {
 	module: {
 		rules: [
 			{
-				test: /\.(ts|tsx)$/,
+				test: /\.tsx?$/,
 				exclude: /(node_modules)/,
 				use: [
 					{
 						loader: 'ts-loader',
+						options: {
+							allowTsInNodeModules: false,
+							transpileOnly: true
+						},
 					},
 				],
 			},
@@ -84,7 +88,7 @@ module.exports = {
 		new CleanWebpackPlugin([
 			path.resolve(__dirname, '..', 'public', 'build'),
 		], {
-			root: __dirname,
+			root: path.resolve(__dirname, '..'),
 			verbose: true,
 			dry: false,
 			exclude: ['manifest.json'],

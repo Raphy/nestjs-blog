@@ -1,11 +1,16 @@
 {
   "compilerOptions": {
-
+    "jsx": "react",
+    "module": "commonjs",
+    "noImplicitAny": true,
+    "preserveConstEnums": true,
+    "removeComments": true,
+    "target": "ES5"
   },
-  "includes": [
-    "ts/**/*"
-  ],
   "exclude": [
     "node_modules"
+  ],
+  "include": [
+    "ts/**/*"
   ]
 }
