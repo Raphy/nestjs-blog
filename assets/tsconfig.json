@@ -1,16 +1,22 @@
 {
   "compilerOptions": {
+    "sourceMap": true,
+    "target": "es5",
     "jsx": "react",
-    "module": "commonjs",
-    "noImplicitAny": true,
-    "preserveConstEnums": true,
+    "module": "es6",
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
+    "declaration": false,
     "removeComments": true,
-    "target": "ES5"
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "strict": true,
+    "outDir": "build",
+    "lib": ["es6", "es7", "dom"],
+    "baseUrl": "src",
+    "paths": {
+      "app/*": ["./app/*"]
+    }
   },
-  "exclude": [
-    "node_modules"
-  ],
-  "include": [
-    "ts/**/*"
-  ]
+  "exclude": ["dist", "build", "node_modules"]
 }
