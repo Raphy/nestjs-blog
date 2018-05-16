@@ -36,6 +36,10 @@ module.exports = {
 		// }
 	},
 	target: 'web',
+	externals: [
+		"react",
+		"react-dom"
+	],
 	module: {
 		rules: [
 			{

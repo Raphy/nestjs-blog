@@ -30,13 +30,22 @@
     "reflect-metadata": "^0.1.12",
     "rxjs": "^5.5.6",
     "typeorm": "^0.1.14",
-    "typescript": "^2.6.2"
+    "typescript": "^2.8.3"
   },
   "devDependencies": {
-    "@types/node": "^9.3.0",
+    "@types/history": "^4.6.2",
+    "@types/node": "^10.0.8",
+    "@types/react-redux": "^6.0.0",
+    "@types/webpack": "^4.1.6",
+    "@types/webpack-env": "^1.13.6",
     "commander": "^2.15.1",
     "nodemon": "^1.14.1",
+    "prettier": "^1.12.1",
     "prompt": "^1.0.0",
+    "react-redux": "^5.0.7",
+    "redux": "^4.0.0",
+    "redux-saga": "^0.16.0",
+    "redux-thunk": "^2.2.0",
     "ts-node": "^4.1.0"
   }
 }

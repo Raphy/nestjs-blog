@@ -28,6 +28,7 @@
   },
   "scripts": {
     "start": "webpack --config webpack.config.js --progress --watch",
-    "build": "webpack --config webpack.config.js --optimize-minimize -p"
+    "build": "webpack --config webpack.config.js --optimize-minimize -p",
+    "prettier": "prettier --write \"src/**/*.{ts,tsx,css}\""
   }
 }
